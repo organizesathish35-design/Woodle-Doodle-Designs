@@ -430,7 +430,7 @@
   WDD.vel = 0; WDD.scrollY = scrollY;
   WDD.progress = el => { const r = el.getBoundingClientRect(); return clamp((innerHeight - r.top) / (r.height + innerHeight)); };
   WDD.sticky = el => { const r = el.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight)); };
-  let lastY = scrollY, navHidden = false, resized = false, probing = false;
+  let lastY = scrollY, navHidden = false, resized = false, probing = false, navTravel = 0;
   const frames = [];
   addEventListener('resize', () => { resized = true; }, { passive: true });
   function frame(t) {
@@ -440,8 +440,18 @@
     WDD.vel += (dy - WDD.vel) * .18;
     WDD.scrollY = y;
     if (nav && !locked) {
-      if (y > 240 && dy > 3 && !navHidden) { nav.classList.add('hide'); navHidden = true; }
-      else if ((dy < -3 || y < 240) && navHidden) { nav.classList.remove('hide'); navHidden = false; }
+      if (touch) {
+        /* A flick gives jittery per-frame deltas, and momentum makes dy flip sign as
+           it decays, so a per-frame test flickers the bar on and off at the end of
+           every swipe. Accumulate travel in one direction and only act once the
+           gesture is clearly deliberate. */
+        navTravel = (dy > 0) === (navTravel > 0) ? navTravel + dy : dy;
+        if (y > 240 && navTravel > 48 && !navHidden) { nav.classList.add('hide'); navHidden = true; }
+        else if ((navTravel < -48 || y < 240) && navHidden) { nav.classList.remove('hide'); navHidden = false; }
+      } else {
+        if (y > 240 && dy > 3 && !navHidden) { nav.classList.add('hide'); navHidden = true; }
+        else if ((dy < -3 || y < 240) && navHidden) { nav.classList.remove('hide'); navHidden = false; }
+      }
     }
     if (dy !== 0 || Math.abs(WDD.vel) > .05 || resized) { resized = false; for (const f of scrollSubs) f(y, WDD.vel); }
     for (const f of subs) f(y, WDD.vel, t);
@@ -503,7 +513,13 @@
   };
   WDD.drawIn = svg => svg.querySelectorAll('[data-draw]').forEach(p => { p.style.strokeDashoffset = 0; });
   // Motion interpolates transforms function-by-function, so both ends spell out the same functions (never 'none').
-  const FROM = { '': ['translateY(40px)', 'translateY(0px)'], left: ['translateX(-50px) rotate(-2deg)', 'translateX(0px) rotate(0deg)'], pop: ['scale(.6) rotate(-8deg)', 'scale(1) rotate(0deg)'] };
+  /* On a phone the same reveal has to resolve inside a much smaller frame, and a
+     spring that overshoots reads as jitter rather than bounce. Shorter travel and
+     almost no bounce let one section flow into the next instead of each element
+     popping as it crosses the fold. Desktop keeps the livelier original. */
+  const FROM = touch
+    ? { '': ['translateY(22px)', 'translateY(0px)'], left: ['translateX(-26px) rotate(-1deg)', 'translateX(0px) rotate(0deg)'], pop: ['scale(.82) rotate(-4deg)', 'scale(1) rotate(0deg)'] }
+    : { '': ['translateY(40px)', 'translateY(0px)'], left: ['translateX(-50px) rotate(-2deg)', 'translateX(0px) rotate(0deg)'], pop: ['scale(.6) rotate(-8deg)', 'scale(1) rotate(0deg)'] };
   function motionReveal(el) {
     if (el.dataset.shown) return;
     el.dataset.shown = '1';
@@ -511,7 +527,8 @@
     const delay = parseFloat(el.style.getPropertyValue('--d')) || 0;
     if (el.hasAttribute('data-split')) {
       M.animate(el.querySelectorAll('.w > span'), { transform: ['translateY(105%) rotate(6deg)', 'translateY(0%) rotate(0deg)'] },
-        { type: 'spring', bounce: .25, duration: .9, delay: M.stagger(.035, { startDelay: delay }) });
+        { type: 'spring', bounce: touch ? .1 : .25, duration: touch ? 1 : .9,
+          delay: M.stagger(touch ? .022 : .035, { startDelay: delay }) });
       return;
     }
     const kind = el.dataset.reveal || '';
@@ -519,13 +536,16 @@
       M.animate(el, { clipPath: ['inset(0 100% 0 0 round 20px)', 'inset(0 0% 0 0 round 20px)'] }, { duration: 1.2, delay, ease: [.77, 0, .18, 1] });
     } else {
       M.animate(el, { opacity: [0, 1], transform: FROM[kind] || FROM[''] },
-        { type: 'spring', bounce: kind === 'pop' ? .45 : .2, duration: kind === 'pop' ? 1 : .9, delay });
+        { type: 'spring',
+          bounce: touch ? (kind === 'pop' ? .18 : .06) : (kind === 'pop' ? .45 : .2),
+          duration: touch ? 1.05 : (kind === 'pop' ? 1 : .9), delay });
     }
   }
   WDD.observe = (root = d) => {
     root.querySelectorAll('[data-split]').forEach(splitWords);
     if (M && !reduce) {
-      root.querySelectorAll('[data-reveal],[data-split]').forEach(el => M.inView(el, () => motionReveal(el), { margin: '0px 0px -10% 0px' }));
+      const margin = touch ? '0px 0px 8% 0px' : '0px 0px -10% 0px';
+      root.querySelectorAll('[data-reveal],[data-split]').forEach(el => M.inView(el, () => motionReveal(el), { margin }));
     } else {
       root.querySelectorAll('[data-reveal],[data-split]').forEach(el => io.observe(el));
     }
