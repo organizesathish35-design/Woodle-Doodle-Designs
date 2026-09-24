@@ -1,0 +1,8 @@
+# local dev-server config for the editor, not part of the site
+.claude/
+
+# python/editor noise
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

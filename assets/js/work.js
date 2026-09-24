@@ -33,11 +33,14 @@
     return piece;
   });
 
-  let trackW = 0, span = 0;
+  let trackW = 0, span = 0, reach = 0;
   function layout() {
     trackW = track.scrollWidth;
     span = Math.max(0, trackW - innerWidth);
-    line.style.height = (span + innerHeight) + 'px';
+    // On a phone the line would otherwise need about four screens of scrolling to walk;
+    // shortening the run lets the same swipe carry you further along it.
+    reach = W.touch ? Math.round(span * .7) : span;
+    line.style.height = (reach + innerHeight) + 'px';
     const H = innerHeight;
     rope.setAttribute('width', trackW);
     rope.setAttribute('height', H);
@@ -67,7 +70,12 @@
       { target: line, offset: ['start start', 'end end'] });
   }
   layout();
-  addEventListener('resize', layout);
+  let lastW = innerWidth;
+  addEventListener('resize', () => {
+    if (W.touch && innerWidth === lastW) return;   // just the address bar, not a real resize
+    lastW = innerWidth;
+    layout();
+  });
   if (d.fonts) d.fonts.ready.then(layout);
 
   /* ----------------------------------------------- rainbow + wind + hud */
@@ -84,11 +92,11 @@
   W.onFrame((y, v, t) => {
     if (!lineVis.on) return;
     if (!M) track.style.transform = `translate3d(${(-W.sticky(line) * span).toFixed(1)}px,0,0)`;
-    if (W.lite && (skip = !skip)) return;
-    wind = lerp(wind, clamp(-v * 1.1, -18, 18), W.lite ? .14 : .07);
+    if (W.cheap && (skip = !skip)) return;
+    wind = lerp(wind, clamp(-v * 1.1, -18, 18), W.cheap ? .14 : .07);
     pieces.forEach((pc, i) => {
       const target = W.reduce ? 0 : Math.sin(t * pc.speed + pc.phase) * pc.amp + wind * (.8 + (i % 3) * .18);
-      const next = lerp(pc.rot, target, W.lite ? .22 : .12);
+      const next = lerp(pc.rot, target, W.cheap ? .22 : .12);
       if (Math.abs(next - pc.rot) < .01) return;
       pc.rot = next;
       pc.inner.style.transform = `rotate(${pc.rot.toFixed(2)}deg)`;
@@ -182,7 +190,7 @@
   function centerOn(i) {
     const pc = pieces[i];
     const x = pc.el.offsetLeft + pc.el.offsetWidth / 2 - innerWidth / 2;
-    const top = line.getBoundingClientRect().top + scrollY + clamp(x / Math.max(1, span)) * span;
+    const top = line.getBoundingClientRect().top + scrollY + clamp(x / Math.max(1, span)) * reach;
     if (W.lenis) W.lenis.scrollTo(top, { immediate: true, force: true });
     else scrollTo(0, top);
   }
@@ -238,6 +246,17 @@
     else if (e.target.closest('[data-prev]')) step(-1);
     else if (e.target.closest('[data-next]')) step(1);
   });
+  let tx = null, ty = null;
+  lb.addEventListener('touchstart', e => {
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
+    tx = null;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);
+  }, { passive: true });
   d.addEventListener('keydown', e => {
     if (lb.hidden) return;
     if (e.key === 'Escape') close();

@@ -94,7 +94,7 @@
   let skip = false;
   W.onFrame((y, v, t) => {
     if (W.reduce || !heroVis.on) return;
-    if (W.lite && (skip = !skip)) return;
+    if (W.cheap && (skip = !skip)) return;
     const dd = Math.min((t % LOOP) / LOOP * (PL + 500), PL);
     const a = planePath.getPointAtLength(dd), b = planePath.getPointAtLength(Math.min(PL, dd + 3));
     plane.setAttribute('transform', `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${(Math.atan2(b.y - a.y, b.x - a.x) * 57.2958).toFixed(1)})`);
@@ -131,7 +131,7 @@
     const r = stage.getBoundingClientRect();
     const x = e.clientX - r.left, yy = e.clientY - r.top;
     if (yy < r.height * .66) return;
-    for (let i = 0; i < (W.lite ? 2 : 3); i++) {
+    for (let i = 0; i < (W.cheap ? 2 : 3); i++) {
       const s = d.createElement('span');
       s.className = 'ripple';
       s.style.left = x + 'px'; s.style.top = yy + 'px';

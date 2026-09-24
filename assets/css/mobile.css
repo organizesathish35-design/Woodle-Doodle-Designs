@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Woodle Doodle — mobile polish
+   This file loads last, after every page stylesheet, so these rules win.
+   Every rule sits inside a small-screen or touch query on purpose: desktop
+   and laptop rendering is left exactly as it was.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  /* 1 · heights that don't move when the address bar does.
+     `vh` grows the moment the browser bar slides away, which shifts every section
+     mid-scroll and makes long pages feel like they stutter. `svh` stays put. */
+  .hero { height: 180svh; }
+  .story { height: 240svh; }
+  .story-pin { height: 100svh; }
+  .hero-stage, .line-stage { height: 100svh; }
+  .table-top { height: clamp(460px, 74svh, 640px); }
+  .stickerboard { height: clamp(430px, 64svh, 580px); }
+  .proc-step { min-height: 62svh; }
+
+  /* 2 · clear the notch and the home-bar on tall phones */
+  .nav { padding-top: calc(14px + env(safe-area-inset-top)); }
+  .toast { bottom: calc(24px + env(safe-area-inset-bottom)); }
+  .line-hud { bottom: calc(22px + env(safe-area-inset-bottom)); }
+  .board-btns { bottom: calc(16px + env(safe-area-inset-bottom)); }
+  .route-inner { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+  .foot-bottom { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+
+  /* 3 · thumb-sized controls */
+  .tool { width: 46px; height: 46px; }
+  .route-btn { width: 58px; height: 58px; }
+  .book-ctrl .tool { width: 50px; height: 50px; }
+  .btn, .tear, .g-filters button, .lb-btns button { min-height: 44px; }
+
+  /* 4 · a swipe inside an overlay must never drag the page behind it, and
+     swiping past the end of the diary must not trigger the browser's back gesture */
+  .route-inner, .lb { overscroll-behavior: contain; }
+  .book { overscroll-behavior-x: contain; scroll-padding-inline: 8vw; }
+
+  /* 5 · the process steps slide in from the right on a wide screen; on a narrow one
+     that overhang widens the page, which makes the browser render everything
+     zoomed out. Here they simply fade in. */
+  .proc-step { transform: none; }
+
+  /* 6 · the gallery and board cards sit at a slight angle — keep their corners
+     from widening the page for the same reason */
+  .gallery, .f-board-sec, .board-sec, .tickets, .rv-sec { overflow-x: clip; }
+
+  /* 7 · taps land instantly with no grey flash; keyboard focus rings still show */
+  a, button, label, summary, .drag { -webkit-tap-highlight-color: transparent; }
+  a, button, label, summary { touch-action: manipulation; }
+}
+
+@media (pointer: coarse) {
+  /* cheaper paint: one shadow rather than a stack of five behind every sticker */
+  .sticker { filter: drop-shadow(2px 4px 0 rgba(40,20,0,.3)); }
+  /* idle loops that mostly cost fill-rate on a small screen */
+  .w-cloud, .w-sun, .clouds-layer { animation: none; }
+  /* nothing here can be hovered, so don't pay for hover-only transitions */
+  .frame, .stamp, .g-item, .clip, .rv, .luggage li { transition: none; }
+}

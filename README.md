@@ -36,6 +36,16 @@ If her Wix site ever goes offline the images stop loading — save local copies 
 
 - **Motion** (motion.dev, Framer Motion for plain JavaScript) drives the spring reveals, scroll-linked parallax, the clothesline, the lightbox, marquees and the paper-plane flight.
 - **Lite mode** switches on automatically for low-power devices, or if the first seconds run below ~38fps: lighter rain, native scrolling, no cursor trail. Add `?lite` to any URL to preview it.
+- **Touch tier.** A modern phone reports plenty of cores and memory, so it never qualified for lite mode and ended up running the full desktop-weight rain on a screen where fill-rate is the scarce thing. `core.js` now also sets a `touch` flag from `(pointer: coarse)`, and `cheap = lite || touch` is what the heavy loops check: the rain renders at 1x pixel ratio, with 45% of the drops, no splashes, and on every other frame. Desktop is untouched — `touch` is false in any mouse-driven browser.
+- **`assets/css/mobile.css`** carries the small-screen polish and is linked *last* on all seven pages, after each page's own stylesheet, so its rules actually win the cascade. Every rule sits inside `max-width: 900px` or `pointer: coarse`, so laptop and desktop rendering is byte-for-byte what it was. It covers:
+  - `svh` instead of `vh` for every full-height section, so nothing shifts mid-scroll when the address bar slides away;
+  - `env(safe-area-inset-*)` padding so the nav clears the notch and the footer, toasts and HUDs clear the home bar;
+  - 44–58px hit areas on the tools, the route button and every button;
+  - `overscroll-behavior` so a swipe inside the route menu or the lightbox can't drag the page behind it, and swiping past the end of the sketchbook can't trigger the browser's back gesture;
+  - no horizontal overhang — the process steps fade rather than slide in, and the angled card sections clip, which is what kept `work.html` from rendering the whole page zoomed out;
+  - lighter paint: one drop-shadow per sticker instead of a stack, idle cloud/sun loops off, hover-only transitions off.
+- **Scroll reach.** The projects clothesline needed about four screens of scrolling to walk end to end on a phone; on touch it now maps the same line onto 70% of that distance, so one swipe carries you meaningfully further along it.
+- Measured at 390x844 with 6x CPU throttling, a full-page scroll of all seven pages holds a 16.7ms median and 16.8ms p95 — a locked 60fps, with the only dropped frames at first paint.
 
 ## Run locally
 

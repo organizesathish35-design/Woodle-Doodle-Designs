@@ -57,8 +57,15 @@
   const rich = fine && !lite;
   if (rich) html.classList.add('rich');
 
+  /* Phones and tablets: the screen is small and the GPU fill-rate is precious, so the
+     heavy touches (rain density, per-frame loops) run lighter here even on fast devices.
+     Desktop is untouched — `touch` is false for any mouse-driven browser. */
+  const touch = matchMedia('(pointer: coarse)').matches;
+  if (touch) html.classList.add('touch');
+  const cheap = lite || touch;   // "draw this the light way"
+
   const WDD = window.WDD = Object.assign(window.WDD || {}, {
-    reduce, fine, lite, rich, M, store, sess, clamp, lerp, wait, IG, LEARN, STOPS, PAGE,
+    reduce, fine, lite, rich, touch, cheap, M, store, sess, clamp, lerp, wait, IG, LEARN, STOPS, PAGE,
   });
 
   /* ------------------------------------------------------------------ icons */
@@ -167,19 +174,24 @@
       this.visible = true; this.running = false;
       this.resize = this.resize.bind(this);
       this.resize();
-      addEventListener('resize', this.resize);
+      this.lastW = innerWidth;
+      addEventListener('resize', () => {
+        if (WDD.touch && innerWidth === this.lastW) return;   // just the address bar
+        this.lastW = innerWidth;
+        this.resize();
+      });
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(([e]) => { this.visible = e.isIntersecting; this.sync(); }).observe(canvas);
       }
     }
     resize() {
       const r = this.c.getBoundingClientRect();
-      const dpr = WDD.lite ? 1 : Math.min(devicePixelRatio || 1, 1.5);
+      const dpr = WDD.cheap ? 1 : Math.min(devicePixelRatio || 1, 1.5);
       this.w = Math.max(1, r.width); this.h = Math.max(1, r.height);
       this.c.width = this.w * dpr; this.c.height = this.h * dpr;
       this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const n = Math.round(this.w * this.h / 7000 * this.o.density * (WDD.lite ? .45 : 1));
-      this.drops = Array.from({ length: Math.min(n, WDD.lite ? 140 : 320) }, () => this.drop(true));
+      const n = Math.round(this.w * this.h / 7000 * this.o.density * (WDD.cheap ? .45 : 1));
+      this.drops = Array.from({ length: Math.min(n, WDD.cheap ? 140 : 320) }, () => this.drop(true));
     }
     drop(init) {
       const z = Math.random();
@@ -199,8 +211,8 @@
     pause() { this.running = false; cancelAnimationFrame(this.raf); if (!WDD.rainOn) this.ctx.clearRect(0, 0, this.w, this.h); }
     step() {
       // lite: draw at ~30fps, drops move twice as far per drawn frame
-      if (WDD.lite && (this.tick = !this.tick)) return;
-      const k = WDD.lite ? 2 : 1;
+      if (WDD.cheap && (this.tick = !this.tick)) return;
+      const k = WDD.cheap ? 2 : 1;
       const { ctx, o } = this;
       ctx.clearRect(0, 0, this.w, this.h);
       this.wind += (this.targetWind - this.wind) * .04;
@@ -214,7 +226,7 @@
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(p.x - dx * p.len / p.v, p.y - p.len);
         ctx.stroke();
-        const splash = o.splash && !WDD.lite;
+        const splash = o.splash && !WDD.cheap;
         const floorY = splash ? this.h * (o.floor + (1 - o.floor) * p.z) : this.h + 40;
         if (p.y > floorY) {
           if (splash && Math.random() < .6) this.splashes.push({ x: p.x, y: floorY, r: 0, max: 3 + p.z * 11, a: .7 * p.a });
