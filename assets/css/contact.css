@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Stop 05 — The Post Office (contact)
+   ========================================================================== */
+
+.c-hero {
+  position: relative;
+  padding: 140px 0 16vh;
+  overflow: hidden;
+  background: var(--paper);
+}
+.c-rain { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.c-grid { position: relative; display: grid; grid-template-columns: .95fr 1.05fr; gap: 5vw; align-items: start; }
+.c-title { font-size: clamp(3.2rem, 7.8vw, 7.2rem); margin-bottom: 1.6rem; }
+.c-title em { color: var(--cobalt); }
+.c-other { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.c-other li { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem; }
+.c-other .hand { font-size: 1.45rem; color: var(--coral); }
+.c-other a { font-weight: 600; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-color: var(--marigold); }
+.c-other a:hover { color: var(--cobalt); }
+.c-tips {
+  margin-top: 2.2rem;
+  padding: 18px 22px;
+  max-width: 380px;
+  background: #ffe88a;
+  rotate: -2deg;
+  box-shadow: 0 18px 24px -16px rgba(27,31,75,.6);
+}
+.c-tips .hand { font-size: 1.5rem; margin: 0 0 .3rem; }
+.c-tips ol { margin: 0; padding-left: 1.3em; font-family: var(--f-hand); font-size: 1.35rem; line-height: 1.35; }
+
+/* ------------------------------------------------------------ the letter */
+.c-stage { position: relative; min-height: 640px; }
+.letter {
+  position: relative;
+  padding: clamp(24px, 3.4vw, 44px);
+  border: 12px solid transparent;
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(transparent 0 42px, rgba(49,72,200,.13) 42px 44px) padding-box,
+    linear-gradient(var(--cream), var(--cream)) padding-box,
+    repeating-linear-gradient(135deg, var(--coral) 0 14px, var(--cream) 14px 28px, var(--cobalt) 28px 42px, var(--cream) 42px 56px) border-box;
+  box-shadow: 0 0 0 2px var(--ink), 10px 10px 0 2px var(--ink);
+  rotate: 1.5deg;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  translate: 0 60px;
+  transition: opacity 1s var(--ease) .3s, translate 1.2s var(--ease) .3s;
+}
+.ready .letter { opacity: 1; translate: 0 0; }
+.letter > * { transition: opacity .35s; }
+.letter.folding > * { opacity: 0; }
+.stamp-slot { position: absolute; top: 18px; right: 18px; display: flex; align-items: center; flex-direction: row-reverse; }
+.l-stamp {
+  width: 78px; height: 94px;
+  padding: 6px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  color: var(--cream);
+  background: linear-gradient(var(--coral), var(--coral)) content-box, var(--cream);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, radial-gradient(circle, transparent 3px, #000 3.5px) -5px -5px / 10px 10px round;
+          mask: linear-gradient(#000 0 0) content-box, radial-gradient(circle, transparent 3px, #000 3.5px) -5px -5px / 10px 10px round;
+  filter: drop-shadow(2px 2px 0 rgba(27,31,75,.4));
+  rotate: 6deg;
+  opacity: .25;
+  scale: .9;
+  transition: opacity .3s, scale .5s var(--spring), rotate .5s var(--spring);
+}
+.l-stamp span { font-size: 2rem; line-height: 1; }
+.l-stamp small { font-size: .56rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.l-postmark { width: 110px; color: var(--cobalt); margin-right: -26px; opacity: 0; scale: 1.6; rotate: -14deg; transition: opacity .3s .15s, scale .45s var(--spring) .15s; position: relative; z-index: 1; }
+.letter.ready-to-send .l-stamp { opacity: 1; scale: 1; rotate: -4deg; }
+.letter.ready-to-send .l-postmark { opacity: .8; scale: 1; }
+
+.l-dear { font-size: clamp(2rem, 3.2vw, 2.6rem); margin: .2rem 0 1.2rem; font-weight: 700; }
+.l-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .7rem; margin: 0 0 .9rem; }
+.l-line label, .l-topics legend { font-family: var(--f-hand); font-size: 1.55rem; color: var(--ink-soft); }
+.letter input:not([type="radio"]), .letter textarea {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-family: var(--f-hand);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cobalt);
+  background: transparent;
+  border: 0;
+  border-bottom: 2.5px dashed rgba(27,31,75,.35);
+  border-radius: 0;
+  padding: 0 .2em;
+  outline: none;
+  transition: border-color .3s;
+}
+.letter input::placeholder, .letter textarea::placeholder { color: rgba(74,79,134,.4); }
+.letter input:focus, .letter textarea:focus { border-bottom-color: var(--coral); border-bottom-style: solid; }
+.letter .invalid { border-bottom-color: var(--coral) !important; animation: shake .4s; }
+@keyframes shake { 25% { translate: -6px 0; } 75% { translate: 6px 0; } }
+.l-msg { display: block; }
+.l-msg label { display: block; margin-bottom: .2rem; }
+.letter textarea { width: 100%; resize: vertical; min-height: 7.2em; line-height: 1.52; background: none; }
+.l-topics { border: 0; padding: 0; margin: 0 0 1.1rem; display: flex; flex-wrap: wrap; gap: 8px; }
+.l-topics legend { padding: 0; margin-bottom: .4rem; }
+.l-topics label { position: relative; cursor: pointer; }
+.l-topics input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.l-topics span {
+  display: inline-block;
+  padding: .3rem .9rem;
+  font-weight: 600;
+  font-size: .95rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--cream);
+  transition: background .25s, transform .4s var(--spring), box-shadow .25s;
+}
+.l-topics label:hover span { transform: rotate(-3deg) translateY(-2px); }
+.l-topics input:checked + span { background: var(--marigold); box-shadow: 3px 3px 0 var(--ink); transform: rotate(-2deg); }
+.l-topics input:focus-visible + span { outline: 3px dashed var(--coral); outline-offset: 3px; }
+.l-sign { text-align: right; font-size: 1.7rem; margin: .4rem 0 1rem; }
+.l-sign span { color: var(--coral); font-weight: 700; }
+.l-error { min-height: 1.4em; margin: 0 0 .6rem; color: var(--coral); font-weight: 600; font-size: .95rem; }
+.l-send { font-size: 1.05rem; }
+
+/* ---------------------------------------------------------------- flight */
+.fly { position: fixed; left: 0; top: 0; width: 120px; z-index: 700; pointer-events: none; opacity: 0; }
+.fly svg { width: 100%; filter: drop-shadow(4px 8px 0 rgba(27,31,75,.25)); }
+.sent {
+  position: absolute;
+  inset: 40px 0 auto 0;
+  padding: clamp(26px, 4vw, 48px);
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 10px 10px 0 var(--ink);
+  rotate: -1.5deg;
+  animation: land .8s var(--spring);
+}
+.sent[hidden] { display: none; }
+@keyframes land { from { opacity: 0; transform: translateY(40px) scale(.9) rotate(4deg); } }
+.sent h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); margin-bottom: 1rem; }
+.sent-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.4rem; }
+
+@media (max-width: 960px) {
+  .c-grid { grid-template-columns: 1fr; gap: 8vh; }
+  .c-stage { min-height: 0; }
+  .sent { position: relative; inset: auto; }
+}
+@media (max-width: 520px) {
+  .stamp-slot { top: 10px; right: 10px; transform: scale(.75); transform-origin: top right; }
+  .l-dear { margin-top: 3.4rem; }
+}
+
+.c-plain { font-weight: 600; }

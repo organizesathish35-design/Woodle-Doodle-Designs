@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Diary · Woodle Doodle Designs</title>
+<meta name="description" content="Meet Sumouli Dutta, the illustrator and designer behind Woodle Doodle Designs. Living an artist life.">
+<meta name="theme-color" content="#232a6e">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Outfit:wght@300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/about.css">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{if(sessionStorage.getItem('wdd-t'))d.classList.add('arriving');else if(!sessionStorage.getItem('wdd-seen'))d.classList.add('first')}catch(e){}})();</script>
+</head>
+<body data-page="about">
+
+<div class="wash" aria-hidden="true">
+  <div class="band b1"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><path fill="currentColor" d="M0 22C160 8 330 34 520 16S860 30 1010 14c70-6 120 10 150 38 26 26 8 52 32 76 12 32-16 58-2 86 6 32-30 54-70 68-100 18-220-6-360 8-160 14-330-12-500 4-110 8-190-8-260-2z"/></svg></div>
+  <div class="band b2"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><path fill="currentColor" d="M0 30C180 14 360 40 540 20S880 36 1030 18c60-6 110 14 140 44 24 28 6 50 26 76 10 30-14 56 0 84 4 30-34 50-74 62-100 14-230-4-370 8-160 12-320-10-490 4-110 8-200-6-272-2z"/></svg></div>
+  <div class="band b3"><svg viewBox="0 0 1200 300" preserveAspectRatio="none"><path fill="currentColor" d="M0 16C170 4 340 30 530 12S870 26 1020 10c70-6 120 12 150 40 26 28 6 54 28 80 10 32-14 58 0 86 4 32-32 52-72 64-100 16-220-4-360 8-160 14-330-10-500 4-110 8-196-6-266-2z"/></svg></div>
+  <div class="wash-label"><span class="hand">next stop</span><strong class="display" id="washName"></strong></div>
+</div>
+<div class="loader" aria-hidden="true">
+  <div class="loader-stage">
+    <svg class="loader-logo" viewBox="0 0 268 178"><g class="wl-woodle" data-row="0"><path style="--i:0" pathLength="100" d="M103.25 2.50L100.75 1.00L96.00 0.50L95.50 0.00L88.00 0.00L86.75 0.75L82.75 1.25L80.50 2.00L74.50 5.25L72.00 7.25L67.25 12.25L63.25 18.25L60.00 25.00L57.00 35.50L55.25 48.75L55.25 63.25L53.75 61.50L53.75 60.75L49.00 50.25L48.50 48.25L42.75 37.50L39.00 34.00L36.75 33.25L32.50 34.00L30.50 35.75L29.00 38.00L28.00 41.25L27.25 46.50L27.25 59.75L28.00 69.50L27.25 70.00L23.75 63.50L18.00 50.50L16.75 46.75L15.75 45.25L13.75 39.75L9.50 32.00L7.25 30.00L3.50 30.00L1.50 31.75L0.75 33.50L1.00 37.00L10.25 60.00L18.25 76.75L22.00 83.25L26.25 88.50L29.00 90.00L33.50 90.00L35.50 88.75L37.75 85.75L38.75 81.50L38.75 68.00L37.75 54.75L38.25 53.50L39.00 54.00L40.00 55.75L43.00 63.75L48.25 75.00L51.25 80.50L54.00 84.50L55.75 86.50L58.25 88.00L60.00 88.50L64.00 87.75L65.50 86.50L66.75 84.50L67.75 80.50L67.50 73.75L67.00 72.00L66.00 60.00L66.25 47.00L67.75 36.75L71.00 26.75L75.75 19.00L80.00 14.75L83.00 12.75L85.25 11.75L89.00 11.00L100.00 11.50L102.25 10.75L103.75 9.25L104.75 7.25L104.75 5.25Z"/><path style="--i:1" pathLength="100" d="M88.00 20.25L83.00 22.00L80.50 23.75L76.25 28.50L74.00 32.50L72.00 38.25L71.00 43.75L70.75 52.25L71.25 57.75L72.25 62.50L75.00 70.25L77.00 74.00L80.25 78.50L85.00 82.75L88.75 84.75L92.75 85.75L96.25 85.75L100.25 84.75L104.25 82.50L108.50 78.00L111.75 72.00L113.50 66.25L114.50 59.00L114.50 53.50L113.75 47.00L111.75 39.50L109.75 34.75L105.00 27.50L100.00 23.00L96.75 21.25L93.25 20.25ZM90.25 30.25L93.25 30.75L94.75 31.75L98.75 36.00L102.00 42.50L104.00 50.25L104.25 59.25L102.75 67.00L100.75 71.25L99.00 73.50L97.50 74.75L94.75 75.75L91.75 75.00L90.00 73.75L86.00 69.25L83.00 63.00L81.00 54.50L81.00 45.25L82.75 38.00L85.25 33.50L88.25 30.75Z"/><path style="--i:2" pathLength="100" d="M109.00 9.00L107.00 11.00L106.50 12.50L106.50 14.75L107.25 16.50L111.50 19.75L114.75 19.75L116.50 18.75L117.75 17.25L118.50 15.50L118.50 13.25L117.75 11.50L116.25 10.00L112.25 8.50Z"/><path style="--i:3" pathLength="100" d="M182.75 22.50L177.25 18.00L173.25 16.00L167.50 14.25L162.00 14.00L160.00 15.00L159.25 16.50L159.00 25.50L158.00 27.25L155.00 30.25L154.25 30.25L151.75 26.00L148.50 22.25L143.75 19.25L140.50 18.25L136.75 18.00L132.50 19.00L128.75 21.00L125.00 24.50L123.00 27.50L121.00 31.50L119.00 38.75L118.50 43.00L119.00 51.25L121.00 57.25L123.00 60.75L127.50 65.75L130.25 67.75L135.00 69.50L138.50 69.75L142.75 68.75L145.25 67.50L148.00 65.50L151.00 62.50L152.50 60.50L154.75 56.00L155.75 53.25L156.75 48.00L156.50 39.25L157.25 38.25L158.25 38.00L158.75 38.50L159.25 66.00L158.50 66.75L156.75 66.50L155.00 67.50L153.75 69.50L154.00 72.50L155.50 74.00L157.50 74.75L165.25 75.00L172.00 73.75L176.50 71.75L179.75 69.50L185.75 63.00L188.75 57.25L190.75 49.75L191.00 43.00L190.75 39.50L188.50 31.50L186.50 27.50ZM128.25 36.50L134.00 40.75L136.75 41.75L140.50 42.50L143.75 42.50L147.75 41.75L148.75 42.50L148.75 46.50L148.25 47.75L148.00 50.75L147.00 53.50L144.75 57.25L141.75 60.00L140.00 61.00L136.75 61.50L134.50 60.75L131.75 58.50L128.75 54.50L126.75 48.50L126.75 41.50L127.75 37.00ZM134.50 28.75L136.25 26.75L138.50 26.25L140.75 26.75L145.00 30.50L146.00 32.00L146.25 33.50L145.75 34.00L140.75 34.25L138.25 33.75L136.75 33.00L134.75 31.00ZM168.75 23.00L174.50 26.00L178.75 30.50L182.00 37.50L183.00 43.75L182.75 48.25L182.00 51.75L180.00 56.75L177.75 60.00L174.75 63.00L170.50 65.75L169.50 65.75L169.00 65.25L168.75 62.75L168.75 43.75L167.75 24.50L168.00 23.50Z"/><path style="--i:4" pathLength="100" d="M200.25 4.75L198.25 7.25L198.00 11.50L197.25 15.00L195.75 47.25L194.00 64.25L194.00 69.00L195.00 72.00L197.50 74.50L200.75 75.50L208.00 75.50L216.50 74.75L218.50 77.50L222.75 81.50L226.75 83.75L233.00 85.25L241.00 84.75L248.75 81.75L254.25 78.50L255.50 77.25L256.25 75.75L256.50 73.75L255.50 71.25L254.25 70.00L252.50 69.25L250.00 69.25L245.75 71.75L239.00 74.75L232.50 75.00L232.00 74.50L232.75 73.50L234.75 72.75L237.50 70.75L242.75 65.00L246.75 57.75L247.00 56.25L247.75 55.00L248.50 50.00L248.25 45.75L247.50 42.75L245.25 39.00L242.00 36.00L237.50 34.25L230.00 34.25L227.00 35.25L222.00 38.25L218.25 42.25L215.00 48.00L214.00 51.00L213.00 56.50L213.25 64.25L212.50 65.00L205.00 65.25L204.25 64.00L205.75 49.25L206.75 24.50L207.50 17.50L207.50 10.25L206.75 6.50L205.25 4.75L203.75 4.00L202.00 4.00ZM236.50 44.75L238.00 46.25L238.25 50.00L238.00 52.00L236.00 56.75L233.75 60.00L230.00 63.75L226.75 66.00L224.25 66.50L223.75 65.75L223.00 61.75L223.00 58.00L223.75 53.75L225.00 50.50L226.50 48.25L230.50 44.75L233.00 44.00L234.50 44.00Z"/></g><g class="wl-doodle" data-row="1"><path style="--i:5" pathLength="100" d="M21.75 95.25L18.25 97.00L16.00 99.25L15.25 101.00L15.25 103.00L18.25 114.00L18.75 114.50L19.25 116.75L22.00 123.25L29.00 143.00L30.00 144.75L30.25 146.25L29.00 148.25L28.75 149.50L29.00 151.75L31.00 154.50L34.00 155.50L36.75 155.50L41.25 154.75L44.75 153.50L49.50 150.75L53.50 147.00L56.50 142.50L58.75 136.75L59.50 132.25L59.50 126.25L57.75 118.50L55.75 113.75L51.50 107.00L47.25 102.25L43.50 99.25L38.00 96.25L32.00 94.50L26.50 94.25ZM25.75 103.75L30.75 104.00L33.50 104.75L37.75 107.00L40.00 108.75L43.75 112.75L45.75 115.50L48.00 120.00L49.00 122.75L50.00 128.00L50.00 131.00L49.25 134.75L46.75 140.00L43.75 143.00L41.25 144.50L40.00 144.25L37.75 139.00L29.75 116.50L25.00 105.00L25.00 104.25Z"/><path style="--i:6" pathLength="100" d="M76.75 92.75L72.75 94.00L69.25 96.25L65.75 100.25L63.00 105.50L62.00 108.75L61.00 114.75L61.00 123.25L62.00 129.25L64.00 135.75L66.25 140.50L68.75 144.50L72.25 148.50L75.00 150.75L80.50 153.50L84.00 154.00L88.00 153.75L91.50 152.50L95.50 149.50L98.00 146.50L99.75 143.50L101.75 138.00L102.50 134.50L102.50 121.25L101.50 116.25L99.50 110.25L96.50 104.25L93.75 100.50L90.25 97.00L86.25 94.25L81.00 92.75ZM78.25 102.25L81.75 102.75L84.50 104.75L87.00 107.50L89.75 111.75L91.75 117.00L92.75 121.25L93.25 125.25L93.25 130.50L92.75 134.50L91.75 137.75L89.75 141.50L87.25 143.75L86.00 144.25L82.50 144.00L80.25 142.75L77.50 140.00L73.75 134.50L71.25 126.50L70.50 117.75L70.75 114.25L71.75 110.00L72.75 107.25L74.25 105.00L76.75 102.75Z"/><path style="--i:7" pathLength="100" d="M111.00 92.25L109.50 95.25L108.00 99.75L106.50 109.50L106.50 119.00L108.00 129.00L110.00 135.25L113.00 141.00L118.00 146.25L123.75 149.50L128.00 150.50L131.50 150.50L135.50 149.75L140.50 147.50L146.75 142.00L149.75 137.50L151.75 133.50L153.50 128.25L154.75 121.00L154.75 115.00L155.50 114.00L159.00 112.50L162.00 110.50L163.00 111.00L164.25 137.75L163.50 138.75L160.00 139.25L158.00 141.50L158.25 144.25L161.00 146.75L165.50 147.75L169.50 147.50L178.25 145.75L182.75 143.75L186.25 141.50L191.75 136.50L194.50 133.00L197.50 127.00L198.75 122.25L199.00 115.25L198.50 110.50L196.50 104.00L194.25 99.75L191.50 96.00L186.00 91.00L180.75 88.25L174.75 86.75L167.00 87.00L165.25 87.75L163.25 89.75L162.00 95.25L160.00 99.00L157.25 102.00L155.25 103.50L154.25 103.00L152.75 97.50L150.50 93.25L148.75 91.00L145.75 88.00L143.25 86.25L136.50 83.25L131.75 82.50L128.25 82.50L124.25 83.00L121.00 84.00L115.75 87.00L113.25 89.25ZM116.50 109.00L117.25 109.00L118.75 110.75L122.50 113.50L129.75 116.50L137.00 117.50L144.75 117.00L145.25 117.50L144.75 123.25L143.00 129.50L140.25 134.50L136.25 138.75L131.75 140.75L128.00 140.75L124.00 138.75L121.00 135.50L118.75 131.25L116.75 123.75L116.00 118.25L116.00 110.00ZM172.75 96.50L176.00 96.75L178.50 97.75L181.50 99.75L185.00 103.25L187.75 108.00L189.25 113.75L189.00 122.00L186.75 127.25L182.25 132.25L179.00 134.75L175.25 136.50L174.25 135.50L173.75 113.75L172.00 97.50ZM122.75 97.00L124.25 95.50L126.75 94.50L130.00 94.25L133.75 95.00L138.00 97.50L141.00 100.50L143.00 104.00L143.75 107.00L142.25 107.75L135.00 107.75L129.00 106.00L125.75 104.00L123.75 102.00L122.50 99.00Z"/><path style="--i:8" pathLength="100" d="M206.25 86.00L205.00 87.25L204.00 89.75L204.00 93.50L203.00 100.50L202.00 122.75L201.00 133.00L201.00 139.25L202.00 142.25L204.50 144.75L207.50 145.75L211.25 145.75L219.50 144.75L220.75 146.00L222.75 149.25L225.75 152.50L229.75 155.50L235.00 157.75L237.50 158.25L241.75 158.25L245.00 157.50L249.00 155.75L255.50 150.25L258.75 145.00L258.75 141.75L256.25 139.00L255.00 138.50L251.50 139.00L250.00 140.25L248.25 143.00L245.50 145.75L241.50 148.00L238.00 148.00L235.50 147.00L232.00 144.25L232.00 143.75L239.00 140.50L244.50 136.50L248.00 132.75L251.75 127.00L253.75 122.00L254.75 116.25L254.50 112.25L252.75 107.25L250.50 104.00L247.00 101.00L242.00 99.25L238.50 99.25L235.00 100.00L230.25 102.25L226.25 105.50L223.25 109.00L220.25 113.75L218.00 118.75L218.00 120.00L217.00 123.00L216.50 128.00L216.75 134.50L216.25 135.00L211.75 135.25L211.25 134.75L211.25 132.50L211.75 129.25L213.00 103.00L213.50 100.00L213.50 92.00L212.75 87.75L211.50 86.25L209.00 85.25ZM242.00 110.00L244.00 112.50L244.50 114.25L244.50 116.50L243.75 119.75L241.75 124.00L240.00 126.50L235.00 131.00L232.00 132.75L228.75 134.00L227.75 134.00L226.75 133.00L226.75 126.00L227.75 121.75L229.75 117.50L232.75 113.50L236.00 110.75L239.00 109.50L241.00 109.50Z"/><path style="--i:9" pathLength="100" d="M265.00 127.00L263.25 126.50L260.00 127.00L258.00 128.75L256.00 132.25L256.00 136.50L258.00 138.75L259.75 139.75L261.75 139.75L264.00 138.75L265.75 137.25L266.75 135.00L267.75 134.25L267.75 129.50Z"/></g><g class="wl-designs" data-row="2"><path style="--i:10" pathLength="100" d="M58.00 159.50L58.00 176.50L65.75 176.75L69.00 175.75L71.75 173.75L73.00 171.75L73.75 169.50L73.50 165.50L72.25 163.00L70.25 161.00L67.50 159.75ZM62.00 162.75L66.25 162.75L69.00 164.75L70.00 167.00L70.00 169.25L69.00 171.25L67.25 173.00L62.25 173.50L61.50 172.75L61.50 163.25Z"/><path style="--i:11" pathLength="100" d="M86.75 159.50L86.50 176.25L87.25 176.75L99.25 176.75L99.75 176.25L99.75 174.25L99.25 173.50L90.75 173.50L90.00 172.75L90.00 170.25L90.50 169.75L97.25 169.75L98.25 169.50L98.50 169.00L98.50 167.00L98.00 166.50L90.50 166.25L90.00 165.75L90.00 163.25L91.25 162.50L98.75 162.75L99.50 162.25L99.50 159.75L89.75 159.25Z"/><path style="--i:12" pathLength="100" d="M116.25 159.25L114.00 160.25L112.75 161.50L112.00 163.00L112.25 166.25L114.25 168.50L120.25 170.50L121.25 171.50L121.25 172.50L119.75 173.75L117.25 173.75L115.25 173.00L114.00 172.00L113.25 172.00L112.00 173.25L111.75 174.50L113.00 175.50L116.00 176.75L121.25 176.75L123.00 175.75L124.50 174.00L124.75 169.75L122.50 167.50L116.50 165.50L115.75 164.75L115.50 163.75L117.50 162.25L120.50 162.75L121.75 163.75L122.50 163.75L124.00 162.00L124.00 161.00L120.00 159.25Z"/><path style="--i:13" pathLength="100" d="M138.50 159.25L138.00 159.75L138.00 176.50L141.00 176.75L141.50 176.25L141.50 159.75L140.75 159.25Z"/><path style="--i:14" pathLength="100" d="M161.50 159.25L157.50 161.25L156.00 163.00L155.00 164.75L154.50 167.25L154.75 170.50L156.00 173.25L158.25 175.50L161.00 176.75L166.50 176.75L169.00 175.75L170.75 174.50L171.00 167.25L170.25 166.75L164.00 167.00L163.50 169.00L164.50 170.00L167.00 170.00L167.50 170.50L167.50 172.25L165.00 173.75L162.75 173.75L160.50 172.75L159.25 171.50L158.25 168.75L158.50 166.25L159.50 164.50L161.50 162.75L165.00 162.50L166.50 163.00L167.25 163.75L168.50 163.75L169.75 162.25L170.00 161.25L168.75 160.25L166.25 159.25Z"/><path style="--i:15" pathLength="100" d="M184.50 159.25L184.00 160.25L184.25 176.50L187.25 176.75L187.75 176.25L188.00 166.50L189.25 167.25L196.50 176.75L199.25 176.50L199.50 160.00L198.25 159.25L196.00 159.50L196.00 168.75L195.25 169.50L187.25 159.50Z"/><path style="--i:16" pathLength="100" d="M216.75 159.25L214.50 160.25L213.25 161.50L212.50 163.75L213.00 166.75L215.25 168.75L220.00 170.00L221.50 171.00L222.00 172.00L220.25 173.75L217.75 173.75L215.75 173.00L214.75 172.00L213.75 172.00L212.00 174.25L213.50 175.50L216.50 176.75L221.50 176.75L223.50 175.75L225.25 173.25L225.50 170.75L225.00 169.50L223.00 167.50L217.50 165.75L216.25 164.75L216.00 163.75L217.25 162.50L218.50 162.25L221.00 162.75L222.25 163.75L223.00 163.75L224.75 161.50L223.50 160.25L220.50 159.25Z"/></g></svg>
+    <svg class="loader-plane" viewBox="0 0 40 30"><path d="M38 2 2 14l12 4 4 10 6-8 8 4z" fill="#fff8ec" stroke="#1b1f4b" stroke-width="2" stroke-linejoin="round"/><path d="M38 2 14 18m24-16L24 20" stroke="#1b1f4b" stroke-width="1.6" fill="none"/></svg>
+  </div>
+  <div class="loader-bar"><i></i></div>
+  <p class="hand loader-note">sharpening pencils…</p>
+</div>
+
+<header id="nav"></header>
+
+<main>
+  <!-- ============================================================ HERO -->
+  <section class="a-hero">
+    <div class="wrap a-hero-grid">
+      <div class="a-copy">
+        <p class="eyebrow">stop 06 · about</p>
+        <h1 class="display a-title" data-split>Hello! I’m <em>Sumouli.</em></h1>
+        <p class="a-motto hand" data-reveal style="--d:.4">living an artist life 🧸</p>
+        <p class="lead" data-reveal style="--d:.55">A passionate illustrator from Kolkata, India, and the founder of Woodle Doodle Designs. I work on children’s book illustration, digital illustration, storyboarding and illustration for brands: packaging, promotions, wall murals and merchandise. I also run a learning platform to make learning art more affordable, and share it all with 327K friends on Instagram.</p>
+        <div class="role-row" data-reveal style="--d:.7">
+          <span class="chip">✏️ Illustrator</span><span class="chip">📚 Children’s books</span><span class="chip">🎨 Brand art</span><span class="chip">🍋 Art teacher</span>
+        </div>
+      </div>
+
+      <figure class="a-portrait" id="portrait">
+        <div class="arch">
+          <canvas class="arch-rain" id="archRain" aria-hidden="true"></canvas>
+          <svg viewBox="0 0 400 520" role="img" aria-label="An illustrated self-portrait: a girl with glasses and long dark hair holding a mug by a rainy window, a white cat beside her">
+            <defs>
+              <linearGradient id="aSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c3aa3"/><stop offset=".7" stop-color="#7c8de0"/><stop offset="1" stop-color="#c9b9e0"/></linearGradient>
+              <radialGradient id="aLamp"><stop offset="0" stop-color="#ffd98a" stop-opacity=".8"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="400" height="520" fill="url(#aSky)"/>
+            <g fill="#24399c"><circle cx="40" cy="330" r="90"/><circle cx="140" cy="300" r="70"/><circle cx="350" cy="320" r="100"/></g>
+            <g fill="#2a7f86"><circle cx="90" cy="360" r="60"/><circle cx="300" cy="360" r="70"/></g>
+            <g fill="#86c486" opacity=".8"><circle cx="130" cy="270" r="20"/><circle cx="330" cy="250" r="22"/></g>
+            <circle cx="320" cy="200" r="120" fill="url(#aLamp)"/>
+            <g class="me">
+              <path class="hair-back" d="M120 250c-14-90 36-140 90-140s110 40 96 140l14 170H104z" fill="#2a2140"/>
+              <path d="M110 520c0-80 30-120 100-120s100 40 100 120z" fill="#f3ab3a"/>
+              <path d="M170 400c10 20 70 20 80 0l-6 30c-20 12-50 12-68 0z" fill="#e39a2c"/>
+              <rect x="192" y="330" width="36" height="60" fill="#e0ad8a"/>
+              <ellipse cx="210" cy="262" rx="62" ry="72" fill="#f2c3a0"/>
+              <path d="M146 250c0-70 40-100 70-100s64 20 60 90c-20-30-60-44-90-20-14 10-28 20-40 30z" fill="#2a2140"/>
+              <g class="specs" fill="#fff8ec" fill-opacity=".25" stroke="#1b1f4b" stroke-width="5"><circle cx="184" cy="272" r="22"/><circle cx="240" cy="272" r="22"/><path d="M206 272h12M162 268l-14-4M262 268l12-4"/></g>
+              <path class="glint" d="M172 262l10-8M228 262l10-8" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+              <g class="eyes" fill="#1b1f4b"><circle cx="184" cy="274" r="4.5"/><circle cx="240" cy="274" r="4.5"/></g>
+              <g fill="#ef8fa0" opacity=".7"><circle cx="168" cy="304" r="10"/><circle cx="256" cy="304" r="10"/></g>
+              <path d="M198 308q12 10 24 0" stroke="#7a3b2e" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path class="hair-strand" d="M270 220c20 60 20 140 10 200" stroke="#2a2140" stroke-width="18" fill="none" stroke-linecap="round"/>
+              <g class="mug">
+                <path d="M170 450h70l-6 60h-58z" fill="#e5483b"/>
+                <path d="M240 462c24 0 24 34 0 34" stroke="#e5483b" stroke-width="9" fill="none"/>
+                <path d="M186 470l8 10 12-16" stroke="#fff8ec" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <g class="steam" stroke="#fff8ec" stroke-width="4" fill="none" stroke-linecap="round" opacity=".9"><path d="M194 440c-10-14 10-22 0-40"/><path d="M216 438c-10-14 10-24 0-44"/></g>
+                <path d="M150 470c10-20 30-24 36-10M260 470c-10-20-30-24-36-10" stroke="#f2c3a0" stroke-width="18" fill="none" stroke-linecap="round"/>
+              </g>
+            </g>
+            <g class="cat">
+              <path class="tail" d="M340 500c30-10 36-50 20-70" stroke="#fff8ec" stroke-width="12" fill="none" stroke-linecap="round"/>
+              <path d="M300 520c-4-50 10-80 30-80s36 30 30 80z" fill="#fff8ec"/>
+              <circle cx="330" cy="430" r="24" fill="#fff8ec"/>
+              <path d="M310 420l4-26 14 16zM350 420l-4-26-14 16z" fill="#fff8ec"/>
+              <path d="M318 432q5 4 10 0M334 432q5 4 10 0" stroke="#1b1f4b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            </g>
+            <rect x="0" y="0" width="400" height="520" fill="none" stroke="#fff8ec" stroke-width="0"/>
+          </svg>
+          <div class="arch-bars" aria-hidden="true"></div>
+        </div>
+        <figcaption class="hand">a self-portrait, more or less 👓</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- =========================================================== DIARY -->
+  <section class="diary-sec torn-top" id="diary">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-reveal>private! (but you can peek)</p>
+        <h2 class="display big" data-split>Flip through <em>my diary.</em></h2>
+        <p class="hand sec-hint" data-reveal style="--d:.3">click the pages, swipe, or use ← → keys</p>
+      </div>
+
+      <div class="book-wrap">
+        <div class="book" id="book" aria-roledescription="flip book">
+          <!-- leaf 1 -->
+          <div class="leaf">
+            <div class="face front cover">
+              <div class="cover-in">
+                <span class="cover-sticker s1">🧸</span><span class="cover-sticker s2">🍋</span><span class="cover-sticker s3">☂</span>
+                <p class="hand cover-kicker">the diary of a</p>
+                <h3 class="display cover-title">Doodler</h3>
+                <p class="hand cover-owner">property of Sumouli ✨<br>if found, please return (with snacks)</p>
+              </div>
+            </div>
+            <div class="face back page">
+              <p class="pg-no hand">p. 1</p>
+              <h4 class="hand pg-title">What I do</h4>
+              <ul class="pg-list">
+                <li>children’s book illustration</li>
+                <li>digital illustration</li>
+                <li>storyboarding</li>
+                <li>packaging &amp; promotions</li>
+                <li>wall murals &amp; merchandise</li>
+                <li>teaching budding artists</li>
+              </ul>
+            </div>
+          </div>
+          <!-- leaf 2 -->
+          <div class="leaf">
+            <div class="face front page">
+              <p class="pg-no hand">p. 2</p>
+              <svg class="pg-doodle" viewBox="0 0 260 220" aria-hidden="true"><g fill="none" stroke="#3148c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M60 90c-26 0-30-38 0-40 2-30 46-38 58-12 18-20 56-10 56 18 28 0 30 34 4 36H60z"/><path d="M80 116l-8 20M112 116l-8 24M144 116l-8 20" stroke="#7088e2"/><path d="M90 200c10-40 36-54 60-54s50 14 60 54c-10-10-20-10-30 0-10-10-20-10-30 0-10-10-20-10-30 0-10-10-20-10-30 0z" stroke="#e5483b"/></g></svg>
+              <p class="hand pg-big">living an artist life 🧸</p>
+            </div>
+            <div class="face back page">
+              <p class="pg-no hand">p. 3</p>
+              <h4 class="hand pg-title">What I believe</h4>
+              <dl class="pg-beliefs">
+                <dt>WONDER more.</dt><dd>Look twice. The ordinary is where all the good stuff hides.</dd>
+                <dt>DRAW better.</dt><dd>Not perfect. Braver. A page a day adds up.</dd>
+                <dt>DESIGN freely.</dt><dd>Your way of seeing is the style. Let it fly.</dd>
+              </dl>
+            </div>
+          </div>
+          <!-- leaf 3 -->
+          <div class="leaf">
+            <div class="face front page">
+              <p class="pg-no hand">p. 4</p>
+              <h4 class="hand pg-title">Where you’ll find me</h4>
+              <ol class="pg-day">
+                <li><b>📍</b> Kolkata, India</li>
+                <li><b>🎓</b> a degree in art</li>
+                <li><b>📖</b> illustrating children’s books</li>
+                <li><b>🧑‍🏫</b> teaching on my learning platform</li>
+                <li><b>📸</b> 327K friends on Instagram</li>
+                <li><b>🕘</b> Mon–Fri, 9 AM – 7 PM IST</li>
+              </ol>
+            </div>
+            <div class="face back page">
+              <p class="pg-no hand">p. 5</p>
+              <h4 class="hand pg-title">Who I draw for</h4>
+              <p class="pg-text">Brands like <mark>Netflix</mark>, <mark>WhatsApp</mark>, <mark>Google</mark>, <mark>Facebook</mark>, <mark>Amazon</mark>, <mark>Cadbury</mark> and <mark>Snapchat</mark>. Publishing houses, here and abroad. And anyone who wants a little piece of their own story drawn.</p>
+              <p class="hand pg-sign">that includes you 💛</p>
+            </div>
+          </div>
+          <!-- leaf 4 -->
+          <div class="leaf">
+            <div class="face front page">
+              <p class="pg-no hand">p. 6</p>
+              <h4 class="hand pg-title">A note to you</h4>
+              <p class="pg-text letter">I started the learning platform with one vision: to make learning art more affordable. If you’re reading this, you probably draw too, or you want to. Both count. Come and learn with me.</p>
+              <p class="hand pg-sign">— S ✨</p>
+            </div>
+            <div class="face back cover back-cover">
+              <div class="cover-in">
+                <p class="hand cover-kicker">to be continued…</p>
+                <a class="btn" href="contact.html">Write the next page with me <span aria-hidden="true">✈</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="book-ctrl">
+          <button class="tool" type="button" id="bookPrev" aria-label="Previous page">←</button>
+          <span class="hand" id="bookPage" aria-live="polite">cover</span>
+          <button class="tool" type="button" id="bookNext" aria-label="Next page">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= INSTAGRAM -->
+  <section class="ig-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-reveal>over on instagram</p>
+        <h2 class="display big" data-split>Come say hi <em>@woodledoodledesigns.</em></h2>
+      </div>
+      <a class="ig-card" href="https://www.instagram.com/woodledoodledesigns/" target="_blank" rel="noopener" data-reveal="pop" data-cursor="follow ↗">
+        <span class="ig-ring">
+          <img src="https://static.wixstatic.com/media/5dfe12_03fbf73d430844bc84e6f94aeb0a9325~mv2.png/v1/fill/w_400,h_400,al_c,q_85,enc_auto/03fbf73d430844bc84e6f94aeb0a9325.png" width="400" height="400" alt="Sumouli Dutta" loading="lazy" decoding="async">
+        </span>
+        <span class="ig-body">
+          <span class="ig-handle">woodledoodledesigns <span class="ig-tick" aria-hidden="true">✓</span></span>
+          <span class="ig-stats"><b>327K</b> followers &nbsp;·&nbsp; <b>Sumouli Dutta ✨</b></span>
+          <span class="ig-bio">✨ Living An Artist Life 🧸<br>💛 WONDER more. DRAW better. DESIGN freely.<br>🍋 Clients: Google, Meta, Procreate &amp; more<br>✏️ Learn with me →</span>
+          <span class="ig-follow">Follow on Instagram ↗</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================== DESK -->
+  <section class="board-sec cv" id="board">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-reveal>my little collection</p>
+        <h2 class="display big" data-split>Rearrange <em>my stickers.</em></h2>
+        <p class="hand sec-hint" data-reveal style="--d:.3">drag them anywhere. double-tap to spin.</p>
+      </div>
+      <div class="stickerboard" id="stickerboard">
+        <div class="board-btns">
+          <button class="btn alt" type="button" id="tidy">Tidy up</button>
+          <button class="btn" type="button" id="mess">Make a mess</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="foot" data-next="contact"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@13.4.1/dist/motion.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/about.js"></script>
+</body>
+</html>

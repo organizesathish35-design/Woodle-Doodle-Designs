@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Stop 03 — WDD Art Club
+   (reuses the ticket, notebook and post-it styles from learn.css)
+   ========================================================================== */
+
+.c-hero-club { padding: 140px 0 10vh; background: var(--paper); overflow: hidden; }
+.club-hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 5vw; align-items: center; }
+.club-title { font-size: clamp(3.2rem, 8vw, 7.4rem); margin-bottom: .6rem; }
+.club-title em { color: var(--teal); }
+.club-motto { font-size: clamp(1.5rem, 2.4vw, 2.1rem); color: var(--coral); transform: rotate(-2deg); margin: 0 0 1.4rem; }
+.c-hero-club .btn-row { margin-top: 1.6rem; }
+
+.club-banner {
+  position: relative;
+  margin: 0;
+  padding: 12px 12px 44px;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  box-shadow: 10px 12px 0 var(--ink);
+  rotate: 2.5deg;
+}
+.club-banner img { width: 100%; height: auto; }
+.club-banner .tape { position: absolute; top: -13px; left: 50%; width: 90px; height: 26px; background: rgba(255,217,138,.85); transform: translateX(-50%) rotate(-4deg); z-index: 1; }
+.club-banner figcaption { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font-size: 1.45rem; color: var(--ink-soft); }
+
+/* one wide membership ticket */
+.club-ticket { padding-top: 8vh; }
+.club-ticket .ticket-grid { grid-template-columns: minmax(0, 860px); justify-content: center; }
+.club-ticket .tk h3 small { font-family: var(--f-body); font-size: .4em; font-weight: 500; letter-spacing: 0; color: var(--ink-soft); }
+
+.club-extras { margin: 1.6rem 0 0; font-size: 1.45rem; color: var(--coral); }
+
+/* two post-its side by side */
+.club-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 430px)); justify-content: center; gap: clamp(28px, 5vw, 70px); }
+.club-notes .postit:nth-child(2) { rotate: 2.5deg; }
+.postit-blue { background: linear-gradient(170deg, #dfe4ff, #c9d2fb); }
+.club-note-text { font-size: 1.5rem; line-height: 1.35; margin: 0; }
+
+.club-letter-sec { padding: 4vh 0 16vh; }
+.club-letter {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px);
+  text-align: center;
+  border: 12px solid transparent;
+  border-radius: 10px;
+  background:
+    linear-gradient(var(--cream), var(--cream)) padding-box,
+    repeating-linear-gradient(135deg, var(--coral) 0 14px, var(--cream) 14px 28px, var(--cobalt) 28px 42px, var(--cream) 42px 56px) border-box;
+  box-shadow: 0 0 0 2px var(--ink), 10px 10px 0 2px var(--ink);
+  rotate: -1deg;
+}
+.club-letter-text { font-family: var(--f-display); font-variation-settings: "SOFT" 100; font-size: clamp(1.3rem, 2.4vw, 1.9rem); line-height: 1.35; margin: .4rem 0 1rem; }
+.club-sign { font-size: 2rem; color: var(--coral); margin: 0 0 1.4rem; }
+
+@media (max-width: 900px) {
+  .club-hero-grid { grid-template-columns: 1fr; gap: 8vh; }
+  .club-notes { grid-template-columns: minmax(0, 430px); }
+}

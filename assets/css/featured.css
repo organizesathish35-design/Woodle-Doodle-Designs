@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Stop 05 — Featured At
+   ========================================================================== */
+
+.f-hero { padding: 200px 0 6vh; background: var(--paper); }
+.f-title { font-size: clamp(3.2rem, 9vw, 8rem); margin-bottom: 1.2rem; }
+.f-title em { color: var(--coral); }
+
+.f-board-sec { padding: 4vh 0 16vh; }
+.f-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: clamp(28px, 4vw, 48px);
+  padding: clamp(28px, 4vw, 56px);
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,.06) 1.5px, transparent 2px) 0 0 / 14px 14px,
+    #d7a468;
+  border: 12px solid var(--wood);
+  border-radius: 20px;
+  box-shadow: 0 0 0 2px var(--ink), inset 0 0 0 2px var(--ink), 10px 10px 0 2px var(--ink);
+}
+.clip {
+  position: relative;
+  display: grid;
+  gap: .5rem;
+  padding: 30px 22px 22px;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  box-shadow: 6px 8px 0 rgba(27,31,75,.35);
+  transform: rotate(var(--r));
+  transition: transform .45s var(--spring), box-shadow .45s var(--ease);
+}
+.clip:hover, .clip:focus-visible { transform: rotate(0) translateY(-6px) scale(1.03); box-shadow: 10px 14px 0 rgba(27,31,75,.3); }
+.clip-pin { position: absolute; top: -9px; left: 50%; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: var(--c); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.clip-no { font-size: 1.2rem; color: var(--ink-soft); }
+.clip-outlet { font-size: clamp(1.6rem, 2.4vw, 2.1rem); line-height: 1; border-bottom: 3px double var(--ink); padding-bottom: .4rem; }
+.clip-what { font-weight: 600; }
+.clip-lines { height: 34px; background: repeating-linear-gradient(transparent 0 8px, rgba(27,31,75,.15) 8px 10px); }
+.clip-read { font-size: 1.3rem; color: var(--c); }
